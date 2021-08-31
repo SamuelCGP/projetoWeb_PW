@@ -33,7 +33,7 @@
             <h5 class="text-black h4 title-cadastro">Cadastrar - Agendamento de Potenciais Clientes</h5>
             <p class="p-cadastro">Sistema utilizado para agendamento de serviços.</p>
             <!-- FORM -->
-            <form>
+            <form method="post" action="controller/ControllerCadastro.php" id="form" name="form">
                 <!--Nome-->
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Nome</label>
@@ -64,11 +64,10 @@
                     <textarea class="form-control" id="txtObservacao"></textarea>
                 </div>
                 <!--Botão-->
-                <button type="button" class="btn btn-success" id="btnInserir">Cadastrar</button>
+                <button type="submit" class="btn btn-success" id="btnInserir">Cadastrar</button>
             </form>
         </section>
         <script src="bootstrap/js/bootstrap.js"></script>
-        <script src="cordova.js"></script>
         <script src="js/index.js"></script>
     </body>
 </html>
