@@ -47,3 +47,5 @@ var app = {
 };
 
 app.initialize();
+
+// comentário
