@@ -27,25 +27,30 @@ class Cadastro extends Banco{
     }
 
     //Metodos Set
-    public function getNome($string){
+    public function getNome(){
         return $this->nome;
     }
-    public function getTelefone($string){
+    public function getTelefone(){
         return $this->telefone;
     }
-    public function getOrigem($string){
+    public function getOrigem(){
         return $this->origem;
     }
-    public function getData_contato($string){
+    public function getData_contato(){
         return $this->data_contato;
     }
-    public function getObservacao($string){
+    public function getObservacao(){
         return $this->observacao;
     }
 
     //Incluir
     public function incluir(){
-        return $this->setAgendamentos($this->getNome(), $this->getTelefone(), $this->getOrigem(), $this->getData_contato(), $this->getObservacao());
+        return $this->setAgendamentos($this->getNome(),$this->getTelefone(),$this->getOrigem(),$this->getData_contato(),$this->getObservacao());
+    }
+
+    //Listar
+    public function listar(){
+        return $this->getAgendamentos();
     }
 }
 ?>

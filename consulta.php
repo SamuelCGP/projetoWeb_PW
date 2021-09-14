@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+require_once("controller/ControllerCadastro.php")
+?>
 <html style="padding-left: 100px; padding-right: 100px;">
     <head>
         <meta charset="utf-8">
@@ -20,10 +23,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="index.html">Cadastro</a>
+                <a class="nav-item nav-link active" href="index.php">Cadastro</a>
                 <a class="nav-item nav-link disabled" href="#">Consulta <span class="sr-only">(aqui)</span></a>
-                <a class="nav-item nav-link active" href="editarClientes.html">Editar Clientes</a>
-                <a class="nav-item nav-link active" href="excluirClientes.html">Excluir Clientes</a>
+                <a class="nav-item nav-link active" href="editarClientes.php">Editar Clientes</a>
+                <a class="nav-item nav-link active" href="excluirClientes.php">Excluir Clientes</a>
               </div>
             </div>
         </nav>
@@ -44,7 +47,26 @@
                     </tr>
                 </thead>
                 <tbody id="TableData">
+                    <?php
+                        $controller = new ControllerCadastro();
+                        $resultado = $controller->listar();
 
+                        for($i=0;$i<count($resultado);$i++){
+                    ?>
+                    <tr>
+                        <td scope="col"><?php echo $resultado[$i]['nome']; ?></td>
+                        <td scope="col"><?php echo $resultado[$i]['telefone']; ?></td>
+                        <td scope="col"><?php echo $resultado[$i]['origem']; ?></td>
+                        <td scope="col"><?php echo $resultado[$i]['data_contato']; ?></td>
+                        <td scope="col"><?php echo $resultado[$i]['observacao']; ?></td>
+                        <td scope="col">
+                            <button type="button" class="btn btn-outline-primary" style="width: 72px;">Editar</button>
+                            <button type="button" class="btn btn-outline-primary" style="width: 72px;">Excluir</button>
+                        </td>
+					</tr>
+                    <?php
+                        }
+                    ?>
                 </tbody>
             </table>
             <!--Botão-->
@@ -52,7 +74,6 @@
         </section>
 
         <script src="bootstrap/js/bootstrap.js"></script>
-        <script src="cordova.js"></script>
         <script src="js/consulta.js"></script>
     </body>
 </html>
