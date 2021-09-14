@@ -33,7 +33,7 @@
             <h5 class="text-black h4 title-cadastro">Cadastrar - Agendamento de Potenciais Clientes</h5>
             <p class="p-cadastro">Sistema utilizado para agendamento de serviços.</p>
             <!-- FORM -->
-            <form method="post" action="controller/ControllerCadastro.php" id="form" name="form">
+            <form method="post" action="controller/ControllerCadastro.php?funcao=cadastro" id="form" name="form">
                 <!--Nome-->
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Nome</label>
