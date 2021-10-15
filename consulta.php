@@ -1,15 +1,24 @@
-<!DOCTYPE html>
 <?php
 require_once("controller/ControllerCadastro.php")
 ?>
-<html style="padding-left: 100px; padding-right: 100px;">
+<!DOCTYPE html>
+<html style="padding-left: 300px; padding-right: 300px;">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
+        <script>
+		function confirmDelete(delUrl) {
+  			if (confirm("Deseja apagar o registro?")) {
+   				document.location = delUrl;
+   				//var url_string = "http://localhost/agendamento-mysql/" + delUrl;
+				//var url = new URL(url_string);
+				//var data = url.searchParams.get("id"); //pega o value
+	        }  
+		}
+	    </script>
         <!-- STYLE -->
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/style.css">
@@ -25,8 +34,6 @@ require_once("controller/ControllerCadastro.php")
               <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="index.php">Cadastro</a>
                 <a class="nav-item nav-link disabled" href="#">Consulta <span class="sr-only">(aqui)</span></a>
-                <a class="nav-item nav-link active" href="editarClientes.php">Editar Clientes</a>
-                <a class="nav-item nav-link active" href="excluirClientes.php">Excluir Clientes</a>
               </div>
             </div>
         </nav>
@@ -49,7 +56,7 @@ require_once("controller/ControllerCadastro.php")
                 <tbody id="TableData">
                     <?php
                         $controller = new ControllerCadastro();
-                        $resultado = $controller->listar();
+                        $resultado = $controller->listar(0);
 
                         for($i=0;$i<count($resultado);$i++){
                     ?>
@@ -60,8 +67,10 @@ require_once("controller/ControllerCadastro.php")
                         <td scope="col"><?php echo $resultado[$i]['data_contato']; ?></td>
                         <td scope="col"><?php echo $resultado[$i]['observacao']; ?></td>
                         <td scope="col">
-                            <button type="button" class="btn btn-outline-primary" style="width: 72px;">Editar</button>
-                            <button type="button" class="btn btn-outline-primary" style="width: 72px;">Excluir</button>
+                            <button type="button" class="btn btn-outline-primary" onclick="location.href='editarClientes.php?id=<?php echo $resultado[$i]['id']; ?>'" style="width: 72px;">Editar</button>
+							<button type="button" class="btn btn-outline-primary" onclick="javascript:
+								confirmDelete('excluirClientes.php?id=<?php echo $resultado[$i]['id']; ?>')" style
+							="width: 72px;">Excluir</button>
                         </td>
 					</tr>
                     <?php
@@ -69,11 +78,8 @@ require_once("controller/ControllerCadastro.php")
                     ?>
                 </tbody>
             </table>
-            <!--Botão-->
-            <button type="button" class="btn btn-primary" id="btnListar">Buscar Agendamento</button>
         </section>
 
         <script src="bootstrap/js/bootstrap.js"></script>
-        <script src="js/consulta.js"></script>
     </body>
 </html>

@@ -1,8 +1,10 @@
+<?php
+require_once("controller/ControllerCadastro.php");
+?>
 <!DOCTYPE html>
-<html style="padding-left: 100px; padding-right: 100px;">
+<html style="padding-left: 300px; padding-right: 300px;">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -23,7 +25,6 @@
                 <a class="nav-item nav-link active" href="index.php">Cadastro</a>
                 <a class="nav-item nav-link active" href="consulta.php">Consulta</a>
                 <a class="nav-item nav-link disabled" href="#">Editar Clientes<span class="sr-only">(aqui)</span></a>
-                <a class="nav-item nav-link active" href="excluirClientes.php">Excluir Clientes</a>
               </div>
             </div>
         </nav>
@@ -33,42 +34,42 @@
             <h5 class="text-black h4 title-cadastro">Edição de Clientes</h5>
             <p class="p-cadastro">Sistema utilizado para editar dados de clientes.</p>
             <!-- FORM -->
-            <form>
-                <!--Nome-->
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="txtNome" placeholder="Nome Completo">
-                </div>
-                <!--Telefone-->
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Telefone</label>
-                    <input type="text" class="form-control" id="txtTelefone" placeholder="(xx)xxxxx-xxxx">
-                </div>
-                <!--Origem-->
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">Origem</label>
-                    <select id="txtOrigem" class="form-select">
-                        <option selected>Celular</option>
-                        <option>Fixo</option>
-                    </select>
-                </div>
-                </br>
-                <!--Data do Contato-->
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Data do Contato</label>
-                    <input type="date" class="form-control" id="txtDataContato">
-                </div>
-                <!--Observação-->
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Observação</label>
-                    <textarea class="form-control" id="txtObservacao"></textarea>
-                </div>
-                <!--Botão-->
-                <button type="button" class="btn btn-primary" id="btnBuscar">Buscar</button>
-                <button type="button" class="btn btn-primary" id="btnEditar">Editar</button>
-            </form>
+            <?php
+							$controller = new ControllerCadastro();
+							$resultado = $controller->listar($_GET['id']);
+							//print_r($resultado);
+						?>
+            <form method="post" action="controller/ControllerCadastro.php?funcao=editar&id=<?php echo $resultado[0]['id']; ?>" id="form" name="form">
+							<div class="form-group">
+								<label for="exampleFormControlInput1">Nome:</label>
+								<input type="text" class="form-control" name="txtNome" required id="txtNome" value="<?php echo $resultado[0]['nome']; ?>">
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlInput1">Telefone:</label>
+								<input type="tel" class="form-control" required name="txtTelefone" id="txtTelefone" placeholder="(xx)xxxxx-xxxx" value="<?php echo $resultado[0]['telefone']; ?>">
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlSelect1">Origem:</label>
+								<select class="form-control" required name="txtOrigem" id="txtOrigem">
+									<option <?php if($resultado[0]['origem'] == "Celular"){ echo "selected"; } ?>>Celular</option>
+									<option <?php if($resultado[0]['origem'] == "Fixo"){ echo "selected"; } ?>>Fixo</option>
+									<option <?php if($resultado[0]['origem'] == "Whatsapp"){ echo "selected"; } ?>>Whatsapp</option>
+									<option <?php if($resultado[0]['origem'] == "Facebook"){ echo "selected"; } ?>>Facebook</option>
+									<option <?php if($resultado[0]['origem'] == "Instagram"){ echo "selected"; } ?>>Instagram</option>
+									<option <?php if($resultado[0]['origem'] == "Google Meu Negocio"){ echo "selected"; } ?>>Google Meu Negocio</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlInput1">Data do Contato:</label>
+								<input type="date" class="form-control" required name="txtDataContato" id="txtDataContato" value="<?php echo $resultado[0]['data_contato']; ?>">
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Observação</label>
+								<textarea class="form-control" name="txtObservacao" id="txtObservacao" rows="3"><?php echo $resultado[0]['observacao']; ?></textarea>
+							</div>
+							<button type="submit" id="btnInserir" class="btn btn-primary">Editar</button>
+						</form>
         </section>
         <script src="bootstrap/js/bootstrap.js"></script>
-        <script src="js/editar.js"></script>
     </body>
 </html>
