@@ -21,9 +21,9 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-item nav-link disabled" href="#">Cadastro <span class="sr-only">(aqui)</span></a>
-                <a class="nav-item nav-link active" href="consulta.html">Consulta</a>
-                <a class="nav-item nav-link active" href="editarClientes.html">Editar Clientes</a>
-                <a class="nav-item nav-link active" href="excluirClientes.html">Excluir Clientes</a>
+                <a class="nav-item nav-link active" href="consulta.php">Consulta</a>
+                <a class="nav-item nav-link active" href="editarClientes.php">Editar Clientes</a>
+                <a class="nav-item nav-link active" href="excluirClientes.php">Excluir Clientes</a>
               </div>
             </div>
         </nav>
@@ -33,21 +33,21 @@
             <h5 class="text-black h4 title-cadastro">Cadastrar - Agendamento de Potenciais Clientes</h5>
             <p class="p-cadastro">Sistema utilizado para agendamento de serviços.</p>
             <!-- FORM -->
-            <form method="post" action="controller/ControllerCadastro.php" id="form" name="form">
+            <form method="post" action="controller/ControllerCadastro.php?funcao=cadastro" id="form" name="form">
                 <!--Nome-->
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="txtNome" placeholder="Nome Completo">
+                    <input name="txtNome" type="text" class="form-control" id="txtNome" placeholder="Nome Completo">
                 </div>
                 <!--Telefone-->
                 <div class="mb-3">
                     <label for="formGroupExampleInput2" class="form-label">Telefone</label>
-                    <input type="text" class="form-control" id="txtTelefone" placeholder="(xx)xxxxx-xxxx">
+                    <input name="txtTelefone" type="text" class="form-control" id="txtTelefone" placeholder="(xx)xxxxx-xxxx">
                 </div>
                 <!--Origem-->
                 <div class="col-md-4">
                     <label for="inputState" class="form-label">Origem</label>
-                    <select id="txtOrigem" class="form-select">
+                    <select name="txtOrigem" id="txtOrigem" class="form-select">
                         <option selected>Celular</option>
                         <option>Fixo</option>
                     </select>
@@ -56,15 +56,15 @@
                 <!--Data do Contato-->
                 <div class="mb-3">
                     <label for="formGroupExampleInput2" class="form-label">Data do Contato</label>
-                    <input type="date" class="form-control" id="txtDataContato">
+                    <input name="txtDataContato" type="date" class="form-control" id="txtDataContato">
                 </div>
                 <!--Observação-->
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Observação</label>
-                    <textarea class="form-control" id="txtObservacao"></textarea>
+                    <textarea name="txtObservacao" class="form-control" id="txtObservacao"></textarea>
                 </div>
                 <!--Botão-->
-                <button type="submit" class="btn btn-success" id="btnInserir">Cadastrar</button>
+                <button name="btnInserir" type="submit" class="btn btn-success" id="btnInserir">Cadastrar</button>
             </form>
         </section>
         <script src="bootstrap/js/bootstrap.js"></script>

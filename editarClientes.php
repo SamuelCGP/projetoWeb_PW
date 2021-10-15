@@ -20,10 +20,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="index.html">Cadastro</a>
-                <a class="nav-item nav-link active" href="consulta.html">Consulta</a>
+                <a class="nav-item nav-link active" href="index.php">Cadastro</a>
+                <a class="nav-item nav-link active" href="consulta.php">Consulta</a>
                 <a class="nav-item nav-link disabled" href="#">Editar Clientes<span class="sr-only">(aqui)</span></a>
-                <a class="nav-item nav-link active" href="excluirClientes.html">Excluir Clientes</a>
+                <a class="nav-item nav-link active" href="excluirClientes.php">Excluir Clientes</a>
               </div>
             </div>
         </nav>
@@ -69,7 +69,6 @@
             </form>
         </section>
         <script src="bootstrap/js/bootstrap.js"></script>
-        <script src="cordova.js"></script>
         <script src="js/editar.js"></script>
     </body>
 </html>
